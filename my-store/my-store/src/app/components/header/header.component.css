@@ -1,0 +1,31 @@
+.header-container {
+  height: 80px;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
+img {
+  background-color: white;
+}
+
+.cart-logo {
+  height: 50px;
+  background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+}
+
+.main-logo {
+  height: 40px;
+  background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+}
+
+.header-button {
+  border: 0;
+  padding: 0;
+}
+
+.toggle-logo {
+  height: 40px;
+  margin-left: 60px;
+}

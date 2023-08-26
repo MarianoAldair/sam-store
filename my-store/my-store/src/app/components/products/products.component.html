@@ -1,0 +1,5 @@
+<div class="products-layout">
+  <app-product  [product]="product" *ngFor="let product of products;" (addedProduct)="addedProduct($event)"></app-product>
+</div>
+<p>Unidades en carrito: {{ productsToCart.length }} </p>
+<p>Total a abonar: {{ totalToPay }} </p>
