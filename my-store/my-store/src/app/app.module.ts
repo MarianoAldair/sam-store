@@ -8,6 +8,9 @@ import { ImgComponent } from './components/img/img.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ReversePipe } from './pipes/reverse.pipe';
+import { HowLongPipe } from './pipes/how-long.pipe';
+import { ChangeLetterPipe } from './pipes/change-letter.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { HeaderComponent } from './components/header/header.component';
     ImgComponent,
     ProductComponent,
     ProductsComponent,
-    HeaderComponent
+    HeaderComponent,
+    ReversePipe,
+    HowLongPipe,
+    ChangeLetterPipe
   ],
   imports: [
     BrowserModule,

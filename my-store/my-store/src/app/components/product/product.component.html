@@ -1,5 +1,5 @@
 <app-img [img]="product.image"></app-img>
-<h1> {{ product.title }} </h1>
+<h1> {{ product.title | changeLetter }} </h1>
 <h2> {{ product.price | currency: 'AR$'}} </h2>
 <p> {{ product.description }} </p>
 <p><strong>{{ product.category }} </strong></p>
