@@ -1,4 +1,24 @@
 <p>Unidades en carrito: {{ productsToCart.length }}. Total a abonar: {{ totalToPay | currency: 'AR$'}} </p>
+<button class="btn btn-outline-primary" (click)="toggleProductDetail()">Open</button>
 <div class="products-layout">
-  <app-product  [product]="product" *ngFor="let product of products;" (addedProduct)="addedProduct($event)"></app-product>
+  <app-product 
+  [product]="product" 
+  *ngFor="let product of products;" 
+  (addedProduct)="addedProduct($event)" 
+  (productDetail)="showProductDetail($event)">
+  </app-product>
+</div>
+
+<div class="product-detail" [class.active]="productDetailState">
+  <button class="btn btn-outline-primary close-btn" (click)="toggleProductDetail()">Close</button>
+  <div *ngIf="productChosen">
+    <h1> {{ productChosen.title }} </h1>
+    <swiper-container navigation="true" pagination="true" pagination-clickable="true">
+      <swiper-slide>Slide 1</swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+    </swiper-container>
+    <h3> {{ productChosen.price | currency: 'AR$'}} </h3>
+    <p> {{ productChosen.description }} </p>
+  </div>
 </div>

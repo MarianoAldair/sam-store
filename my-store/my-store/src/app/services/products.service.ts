@@ -11,8 +11,13 @@ export class ProductsService {
     private http: HttpClient
   ) { }
   
-  apiUrl = 'https://fakestoreapi.com/products'
+  private apiUrl = 'https://young-sands-07814.herokuapp.com/api/products'
+  
   getAllProducts() {
     return this.http.get<Product[]>(this.apiUrl);
+  }
+
+  getProductById(id: string) {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`)
   }
 }

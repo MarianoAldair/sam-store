@@ -72,9 +72,36 @@ export class ProductsComponent {
 
   productsToCart: Product[] = [];
   totalToPay = 0;
+  productDetailState = false;
+  
+  productChosen: Product = {
+    id: '',
+    title: '',
+    price: 0,
+    description: '',
+    images: [],
+    category: {
+      id: '',
+      name: '',
+      typeImg: ''
+    }
+  }
 
   addedProduct(product: Product) {
     this.cartService.addedProduct(product)
     this.totalToPay = this.cartService.getTotal();
   }
+
+  toggleProductDetail() {
+    this.productDetailState = !this.productDetailState;
+  }
+
+  showProductDetail(id: string) {
+   this.productsService.getProductById(id)
+   .subscribe(product => {
+    console.log('product:', product)
+    this.toggleProductDetail();
+    this.productChosen = product
+   })
+  } 
 }
