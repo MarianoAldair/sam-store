@@ -20,11 +20,14 @@ export class ProductsComponent {
   }
 
   ngOnInit(): void {
-    this.productsService.getAll()
+    this.productsService.getProductsByPagination(this.limit, this.offset)
     .subscribe(products => {
       this.products = products
     });
   }
+
+  limit = 5;
+  offset = 0;
 
   products: Product[] = [
     // {
@@ -141,5 +144,14 @@ export class ProductsComponent {
       this.productDetailState = false;
       console.log('¡Eliminación del producto exitosa!', prod)
     })
+  }
+
+  loadMore() {
+    console.log(this.limit, this.offset)
+    this.productsService.getProductsByPagination(this.limit, this.offset)
+    .subscribe(products => {
+      this.products = this.products.concat(products)
+      this.offset += this.limit;
+    });
   }
 }

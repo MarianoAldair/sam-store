@@ -8,6 +8,7 @@
   (productDetail)="showProductDetail($event)">
   </app-product>
 </div>
+<button class="btn btn-outline-primary" (click)="loadMore()">Load more</button>
 
 <div class="product-detail" [class.active]="productDetailState">
   <button class="btn btn-outline-primary close-btn" (click)="toggleProductDetail()">Close</button>

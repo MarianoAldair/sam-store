@@ -34,4 +34,12 @@ export class ProductsService {
   delete(id: string) {
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`)
   }
+
+  getProductsByPagination(limit: number, offset: number) {
+    return this.http.get<Product[]>(`${this.apiUrl}?limit=${limit}&offset=${offset}`)
+
+    // return this.http.get<Product[]>(`${this.apiUrl}`, {
+    //   params: { limit, offset }
+    // })
+  }
 }
