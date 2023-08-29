@@ -1,5 +1,5 @@
 <p>Unidades en carrito: {{ productsToCart.length }}. Total a abonar: {{ totalToPay | currency: 'AR$'}} </p>
-<button class="btn btn-outline-primary" (click)="toggleProductDetail()">Open</button>
+<button class="btn btn-outline-primary" (click)="createNewProduct()">Create</button>
 <div class="products-layout">
   <app-product 
   [product]="product" 
@@ -20,5 +20,7 @@
     </swiper-container>
     <h3> {{ productChosen.price | currency: 'AR$'}} </h3>
     <p> {{ productChosen.description }} </p>
+    <button (click)="updateProduct()">Edit</button>
+    <button (click)="deleteProduct()">Delete</button>
   </div>
 </div>

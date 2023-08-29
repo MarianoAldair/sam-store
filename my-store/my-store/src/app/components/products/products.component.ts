@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model'
 import { CartService } from '../../services/cart.service'
 import { ProductsService } from '../../services/products.service'
+import { ProductDto } from '../../dtos/product.dto'
 
 @Component({
   selector: 'app-products',
@@ -19,7 +20,7 @@ export class ProductsComponent {
   }
 
   ngOnInit(): void {
-    this.productsService.getAllProducts()
+    this.productsService.getAll()
     .subscribe(products => {
       this.products = products
     });
@@ -97,11 +98,48 @@ export class ProductsComponent {
   }
 
   showProductDetail(id: string) {
-   this.productsService.getProductById(id)
+   this.productsService.getById(id)
    .subscribe(product => {
     console.log('product:', product)
     this.toggleProductDetail();
     this.productChosen = product
    })
   } 
+
+  createNewProduct() {
+    const product: ProductDto = {
+      title: 'My first new product',
+      price: 25,
+      description: 'This is the first product posted on the API by the createNewProduct() method.',
+      images: [],
+      categoryId: '4'
+    }
+    this.productsService.create(product)
+    .subscribe(product => {
+      console.log('¡Creación del producto exitosa!', product);
+      this.products.unshift(product);
+    });
+  }
+
+  updateProduct() {
+    const changes = {
+      title: 'New title'
+    }
+    this.productsService.update(this.productChosen.id, changes)
+    .subscribe(changes => {
+      console.log('¡Cambios realizados con éxito!', changes);
+      const productIndex = this.products.findIndex(prod => prod.id === this.productChosen.id);
+      this.products[productIndex] = changes;
+    })
+  }
+
+  deleteProduct() {
+    this.productsService.delete(this.productChosen.id)
+    .subscribe(prod => {
+      const id = this.products.findIndex(product => product.id === this.productChosen.id)
+      this.products.splice(id, 1)
+      this.productDetailState = false;
+      console.log('¡Eliminación del producto exitosa!', prod)
+    })
+  }
 }
