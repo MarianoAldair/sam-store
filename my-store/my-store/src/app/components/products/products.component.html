@@ -1,5 +1,6 @@
 <p>Unidades en carrito: {{ productsToCart.length }}. Total a abonar: {{ totalToPay | currency: 'AR$'}} </p>
 <button class="btn btn-outline-primary" (click)="createNewProduct()">Create</button>
+<button class="btn btn-outline-primary" (click)="showProductDetail('111')">Show failed</button>
 <div class="products-layout">
   <app-product 
   [product]="product" 
@@ -11,6 +12,7 @@
 <button class="btn btn-outline-primary" (click)="loadMore()">Load more</button>
 
 <div class="product-detail" [class.active]="productDetailState">
+  {{ statusDetail }}
   <button class="btn btn-outline-primary close-btn" (click)="toggleProductDetail()">Close</button>
   <div *ngIf="productChosen">
     <h1> {{ productChosen.title }} </h1>

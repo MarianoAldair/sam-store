@@ -13,6 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { HowLongPipe } from './pipes/how-long.pipe';
 import { ChangeLetterPipe } from './pipes/change-letter.pipe';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ChangeLetterPipe } from './pipes/change-letter.pipe';
     HeaderComponent,
     ReversePipe,
     HowLongPipe,
-    ChangeLetterPipe
+    ChangeLetterPipe,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

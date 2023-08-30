@@ -77,6 +77,7 @@ export class ProductsComponent {
   productsToCart: Product[] = [];
   totalToPay = 0;
   productDetailState = false;
+  statusDetail: 'loading' | 'success' | 'failed' | 'init' = 'init' ;
   
   productChosen: Product = {
     id: '',
@@ -101,13 +102,18 @@ export class ProductsComponent {
   }
 
   showProductDetail(id: string) {
-   this.productsService.getById(id)
+    this.statusDetail = 'loading'
+    this.productsService.getById(id)
    .subscribe(product => {
     console.log('product:', product)
     this.toggleProductDetail();
     this.productChosen = product
+    this.statusDetail = 'success'
+   }, error => {
+    this.statusDetail = 'failed'
+    console.error(error, this.statusDetail)
    })
-  } 
+  }
 
   createNewProduct() {
     const product: ProductDto = {
