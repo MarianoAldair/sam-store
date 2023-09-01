@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@angular/cdk": "github:angular/cdk-builds",
+    "@angular/material": "github:angular/material2-builds",
     "bootstrap": "^5.3.1"
   }
 }
