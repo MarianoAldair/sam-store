@@ -1,0 +1,9 @@
+.valid {
+  background-color: rgb(25, 135, 84);
+  color: whitesmoke;
+}
+
+.invalid {
+  background-color: tomato;
+  color: whitesmoke;
+}

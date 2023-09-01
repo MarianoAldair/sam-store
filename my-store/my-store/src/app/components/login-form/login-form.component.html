@@ -1,4 +1,158 @@
-<div class="container mt-5" hidden>
+<form [formGroup]="form" (ngSubmit)="save($event)">
+  <p style="margin: 10px;">
+    Name: {{ nameField?.value }} {{ nameField?.valid }}
+    <input type="text" formControlName="name">
+  </p>
+  
+  <div class="errors" [class.active]="nameField?.touched && nameField?.hasError('required')">
+    <p [class.invalid]="nameField?.touched && nameField?.hasError('required')" *ngIf="nameField?.touched && nameField?.hasError('required')">
+      <strong>Este campo es requerido.</strong>
+    </p>
+    
+    <p [class.valid]="nameField?.valid" *ngIf="nameField?.valid">
+      <strong>¡Campo exitoso!</strong>
+    </p>
+    
+    <p [class.invalid]="nameField?.hasError('maxlength')" *ngIf="nameField?.hasError('maxlength')">
+      <strong>La longitud máxima permitida es de cinco caracteres.</strong>
+    </p>
+  </div>
+  
+  <button [disabled]="nameField?.invalid" class="btn btn-outline-primary" (click)="getNameValue()" >Get name</button>
+  
+  <p style="margin: 10px;">
+      Last name: {{ lastNameField?.value }} {{ lastNameField?.valid }}
+    <input type="text" formControlName="lastName"> 
+  </p>
+  
+  <p style="margin: 10px;">
+    E-mail: {{ emailField?.value }} {{ emailField?.valid }}
+    <input type="email" formControlName="email"> 
+  </p>
+  
+  <p style="margin: 10px;">
+    Phone number: {{ phoneField?.value }} {{ phoneField?.valid }}
+    <input type="tel" formControlName="phone"> 
+  </p>
+  
+  <p style="margin: 10px;">
+    Favourite color: {{ colorField?.value }} {{ colorField?.valid }}
+    <input type="color" formControlName="color"> 
+  </p>
+  
+  <p style="margin: 10px;">
+    Date of birth: 
+    <input type="date" formControlName="date"> 
+  </p>
+  
+  <p style="margin: 10px;">
+    Choose your favourite number: 
+    <input type="number" formControlName="number"> 
+  </p>
+  
+  <p style="margin: 10px;">
+    Choose the range:
+    <input type="range" formControlName="range"> 
+  </p>
+  
+  <p style="margin: 10px;">
+    Put a URL: 
+    <input type="url" formControlName="url"> 
+  </p>
+  
+  <p style="margin: 10px;">
+    Leave us a comment: 
+    <input type="textarea" formControlName="comment"> 
+  </p>
+  
+  <p style="margin: 10px;">
+    Choose your favourite food:
+    <select formControlName="food">
+      <option value="hamburger">Hamburger</option>
+      <option value="pizza">Pizza</option>
+      <option value="spaghetti">Spaghetti</option>
+      <option value="lasagna">Lasagna</option>
+      <option value="hotdog">Hotdog</option>
+    </select>
+  </p>
+  
+  <p style="margin: 10px;">
+    Choose your favourite music genre: 
+    <select multiple formControlName="genre">
+      <option value="reggae">Reggae</option>
+      <option value="pop">Pop</option>
+      <option value="rock">Rock</option>
+      <option value="reggaeton">Reggaeton</option>
+      <option value="opera">Ópera</option>
+    </select>
+  </p>
+  
+  <p>
+    Agree terms and conditions:
+    <input type="checkbox" formControlName="agree">
+  </p>
+  
+  <p>
+    Age range: 
+    <label>
+      <input type="radio" name="ageRange" value="+18" formControlName="ageRange">
+      18-25
+    </label>
+    <label>
+      <input type="radio" name="ageRange" value="+25" formControlName="ageRange">
+      25-35
+    </label>
+    <label>
+      <input type="radio" name="ageRange" value="+35" formControlName="ageRange">
+      35+
+    </label>
+  </p>
+  
+  <p>
+    Choose your country: 
+    <label>
+      <input type="radio" name="country" value="AR" formControlName="country">
+      Argentina
+    </label>
+    <label>
+      <input type="radio" name="country" value="BR" formControlName="country">
+      Brasil
+    </label>
+    <label>
+      <input type="radio" name="country" value="UR" formControlName="country">
+      Uruguay
+    </label>
+  </p>
+  
+  <p>
+    Preferences: 
+    <label>
+      Running
+      <input type="checkbox" name="preferences" value="running" formControlName="preferences">
+    </label>
+    <label>
+      Play music
+      <input type="checkbox" name="preferences" value="play-music" formControlName="preferences">
+    </label>
+    <label>
+      Read books
+      <input type="checkbox" name="preferences" value="read-books" formControlName="preferences">
+    </label>
+    <label>
+      Go for a walk
+      <input type="checkbox" name="preferences" value="go-for-a-walk" formControlName="preferences">
+    </label>
+  </p>
+
+  <p> AAA {{ form.valid }} </p>
+
+  <p>
+    <button (click)="save($event)" [disabled]="form.invalid" class="btn btn-outline-primary" type="submit">
+      Send
+    </button>
+  </p>
+</form>
+<!-- <div class="container mt-5" hidden>
   <div class="row">
     <form>
       <div class="mb-3">
@@ -19,5 +173,226 @@
   </div>
 </div>
 
-<button class="btn btn-outline-primary" style="margin: 20px;" (click)="login()">Login</button>
-<button class="btn btn-outline-primary" (click)="createUser()">Create user</button>
+<button class="btn btn-outline-primary" style="margin: 10px;" (click)="login()" hidden>Login</button>
+<button class="btn btn-outline-primary" style="margin: 10px;" (click)="createUser()" hidden>Create user</button>
+<button class="btn btn-outline-primary" style="margin: 10px;" hidden>Get profile</button>
+<p *ngIf="activeUserSession.email"> Usuario logueado: {{ activeUserSession.email }} </p>
+
+Reactive Form under this line.
+
+<p style="margin: 10px;">
+  Name: {{ nameField.valid }} 
+  <input type="text" [formControl]="nameField">
+  <code>
+    <pre>
+      {{ nameField | json }}
+    </pre>
+  </code>
+</p>
+
+<div class="errors" [class.active]="nameField.touched && nameField.hasError('required')">
+  <p [class.invalid]="nameField.touched && nameField.hasError('required')" *ngIf="nameField.touched && nameField.hasError('required')">
+    <strong>Este campo es requerido.</strong>
+  </p>
+  
+  <p [class.valid]="nameField.valid" *ngIf="nameField.valid">
+    <strong>¡Campo exitoso!</strong>
+  </p>
+  
+  <p [class.invalid]="nameField.hasError('maxlength')" *ngIf="nameField.hasError('maxlength')">
+    <strong>La longitud máxima permitida es de cinco caracteres.</strong>
+  </p>
+</div>
+
+<button [disabled]="nameField.invalid" class="btn btn-outline-primary" (click)="getNameValue()" >Get name</button>
+
+<p style="margin: 10px;">
+  Last name:
+  <input type="text" [formControl]="lastNameField"> 
+</p>
+
+<p style="margin: 10px;">
+  E-mail:
+  <input type="email" [formControl]="emailField"> 
+</p>
+
+<p style="margin: 10px;">
+  Phone number:
+  <input type="tel" [formControl]="phoneField"> 
+</p>
+
+<p style="margin: 10px;">
+  Favourite color:
+  <input type="color" [formControl]="colorField"> 
+</p>
+
+<p style="margin: 10px;">
+  Date of birth:
+  <input type="date" [formControl]="dateField"> 
+</p>
+
+<p style="margin: 10px;">
+  Choose your favourite number:
+  <input type="number" [formControl]="numberField"> 
+</p>
+
+<p style="margin: 10px;">
+  Choose the range:
+  <input type="range" [formControl]="rangeField"> 
+</p>
+
+<p style="margin: 10px;">
+  Put a URL:
+  <input type="url" [formControl]="urlField"> 
+</p>
+
+<p style="margin: 10px;">
+  Leave us a comment:
+  <input type="textarea" [formControl]="commentField"> 
+</p>
+
+<p style="margin: 10px;">
+  Choose your favourite food:
+  <select [formControl]="foodField">
+    <option value="hamburger">Hamburger</option>
+    <option value="pizza">Pizza</option>
+    <option value="spaghetti">Spaghetti</option>
+    <option value="lasagna">Lasagna</option>
+    <option value="hotdog">Hotdog</option>
+  </select>
+</p>
+
+<p style="margin: 10px;">
+  Choose your favourite music genre:
+  <select multiple [formControl]="genreField">
+    <option value="hamburger">Reggae</option>
+    <option value="pizza">Pop</option>
+    <option value="spaghetti">Rock</option>
+    <option value="lasagna">Reggaeton</option>
+    <option value="hotdog">Ópera</option>
+  </select>
+</p>
+
+<p>
+  Agree terms and conditions:
+  <input type="checkbox" [formControl]="agreeField">
+</p>
+
+<p>
+  Age range: 
+  <label>
+    <input type="radio" name="genre" value="+18" [formControl]="ageRangeField">
+    18-25
+  </label>
+  <label for="">
+    <input type="radio" name="genre" value="+25" [formControl]="ageRangeField">
+    25-35
+  </label>
+  <label for="">
+    <input type="radio" name="genre" value="+35" [formControl]="ageRangeField">
+    35+
+  </label>
+</p>
+
+<p>
+  Choose your country: 
+  <label>
+    <input type="radio" name="country" value="AR" [formControl]="countryField">
+    Argentina
+  </label>
+  <label for="">
+    <input type="radio" name="country" value="BR" [formControl]="countryField">
+    Brasil
+  </label>
+  <label for="">
+    <input type="radio" name="country" value="UR" [formControl]="countryField">
+    Uruguay
+  </label>
+</p>
+
+<p>
+  Preferences:
+  <label for="">
+    Running
+    <input type="checkbox" name="preferences" value="running" [formControl]="preferencesField">
+  </label>
+  <label for="">
+    Play music
+    <input type="checkbox" name="preferences" value="play-music" [formControl]="preferencesField">
+  </label>
+  <label for="">
+    Read books
+    <input type="checkbox" name="preferences" value="read-books" [formControl]="preferencesField">
+  </label>
+  <label for="">
+    Go for a walk
+    <input type="checkbox" name="preferences" value="go-for-a-walk" [formControl]="preferencesField">
+  </label>
+</p>
+
+
+
+<button class="btn btn-outline-primary" style="margin: 10px; height: 40px;" (click)="toggleStateChange()">
+  <p *ngIf="!toggleState">
+    Show results
+  </p>
+  <p *ngIf="toggleState">
+    Hide results
+  </p>
+</button>
+
+<p *ngIf="toggleState">
+  These are the results:
+</p>
+<ul *ngIf="toggleState">
+  <li>
+    <p>
+      Full name is: {{ nameField.value + ' ' + lastNameField.value }}
+    </p>
+  </li>
+  <li>
+    <p>
+      E-mail: {{ emailField.value }}
+    </p>
+  </li>
+  <li>
+    <p>
+      Phone number: {{ phoneField.value }}
+    </p>
+  </li>
+  <li>
+    <p>
+      Favourite color: {{ colorField.value }}
+    </p>
+  </li>
+  <li>
+    <p>
+      Date of birth: {{ dateField.value }}
+    </p>
+  </li>
+  <li>
+    <p>
+      Favourite number: {{ numberField.value }}
+    </p>
+  </li>
+  <li>
+    <p>
+      Range choosen: {{ rangeField.value }}
+    </p>
+  </li>
+  <li>
+    <p>
+      URL choosen: {{ urlField.value }}
+    </p>
+  </li>
+  <li>
+    <p *ngIf="commentField.value; else elseBlock">
+      Thanks for the comments! This is what you wrote: {{ commentField.value }}
+    </p>
+    <ng-template #elseBlock>
+      <p>
+        Are you sure you want to leave website without post a comment? We hope you enjoyed our experience!
+      </p>
+    </ng-template>
+  </li>
+</ul> -->
