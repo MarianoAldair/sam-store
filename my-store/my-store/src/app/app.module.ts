@@ -19,6 +19,7 @@ import { ChangeLetterPipe } from './pipes/change-letter.pipe';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { SecurityInterceptor } from './interceptors/security.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreateUserFormComponent } from './components/create-user-form/create-user-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReversePipe,
     HowLongPipe,
     ChangeLetterPipe,
-    LoginFormComponent
+    LoginFormComponent,
+    CreateUserFormComponent
   ],
   imports: [
     BrowserModule,

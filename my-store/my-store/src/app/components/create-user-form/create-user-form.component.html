@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="register($event)">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Register form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs">
+            <mat-form-field hideRequiredMarker>
+              <mat-label>E-mail</mat-label>
+              <input placeholder="E-mail" formControlName="email" matInput type="text">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs">
+            <mat-form-field hideRequiredMarker>
+              <mat-label>Password</mat-label>
+              <input placeholder="Password" formControlName="password" matInput type="password">
+              <div *ngIf="passwordField?.touched && passwordField?.invalid">
+                <!--Work on errors-->
+                <mat-error>The password must contain at least one number.</mat-error>
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs">
+            <mat-form-field hideRequiredMarker>
+              <mat-label>Confirm password</mat-label>
+              <input placeholder="Confirm password" matInput type="password">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card-actions>
+    <button [disabled]="form.invalid" mat-raised-button type="submit">Create user</button>
+  </mat-card-actions>
+</form>
+
+
