@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Product } from '../../models/product.model'
 import { CartService } from '../../services/cart.service'
@@ -19,17 +19,8 @@ export class ProductsComponent {
     this.totalToPay = this.cartService.getTotalToPayCart;
   }
 
-  ngOnInit(): void {
-    this.productsService.getProductsByPagination(this.limit, this.offset)
-    .subscribe(products => {
-      this.products = products
-    });
-  }
-
-  limit = 5;
-  offset = 0;
-
-  products: Product[] = [
+  @Output() loadMore = new EventEmitter();
+  @Input() products: Product[] = [
     // {
     //   title: 'Bermies',
     //   price: 35,
@@ -152,12 +143,16 @@ export class ProductsComponent {
     })
   }
 
-  loadMore() {
-    console.log(this.limit, this.offset)
-    this.productsService.getProductsByPagination(this.limit, this.offset)
-    .subscribe(products => {
-      this.products = this.products.concat(products)
-      this.offset += this.limit;
-    });
+  goLoadMore() {
+    this.loadMore.emit();
   }
+
+  // loadMore() {
+  //   console.log(this.limit, this.offset)
+  //   this.productsService.getProductsByPagination(this.limit, this.offset)
+  //   .subscribe(products => {
+  //     this.products = this.products.concat(products)
+  //     this.offset += this.limit;
+  //   });
+  // }
 }

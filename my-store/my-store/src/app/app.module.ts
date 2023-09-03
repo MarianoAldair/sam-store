@@ -20,6 +20,11 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { SecurityInterceptor } from './interceptors/security.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateUserFormComponent } from './components/create-user-form/create-user-form.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { CategoryPagesComponent } from './pages/category-pages/category-pages.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,12 @@ import { CreateUserFormComponent } from './components/create-user-form/create-us
     HowLongPipe,
     ChangeLetterPipe,
     LoginFormComponent,
-    CreateUserFormComponent
+    CreateUserFormComponent,
+    NotFoundPageComponent,
+    HomePageComponent,
+    LandingPageComponent,
+    LoginPageComponent,
+    CategoryPagesComponent
   ],
   imports: [
     BrowserModule,
