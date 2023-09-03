@@ -25,6 +25,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CategoryPagesComponent } from './pages/category-pages/category-pages.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CategoryPagesComponent } from './pages/category-pages/category-pages.co
     HomePageComponent,
     LandingPageComponent,
     LoginPageComponent,
-    CategoryPagesComponent
+    CategoryPagesComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
-<app-img *ngIf="product.images.length > 0" [img]="product.images[0]"></app-img>
+<a [routerLink]="['/product', product.id]">
+  <app-img *ngIf="product.images.length > 0;" img="../../../assets/images/product-not-found.jpg"></app-img>
+</a>
 <h1> {{ product.title }} </h1>
 <h2> {{ product.price | currency: 'AR$'}} </h2>
 <p> {{ product.description }} </p>

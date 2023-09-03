@@ -4,7 +4,8 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { CategoryPagesComponent } from './pages/category-pages/category-pages.component'
+import { CategoryPagesComponent } from './pages/category-pages/category-pages.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component'
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'category/:id',
     component: CategoryPagesComponent
+  },
+  {
+    path: 'product/:id',
+    component: ProductDetailComponent
   },
   {
     path: '**',

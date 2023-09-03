@@ -1,0 +1,14 @@
+<app-header></app-header>
+<div class="page-product">
+  <button class="btn btn-outline-primary" (click)="goToBack()">Back</button>
+  <div class="detail" *ngIf="product">
+    <div class="gallery">
+      <img [src]="product.images[0]" alt="">
+    </div>
+    <div>
+      <h1>{{ product.title }}</h1>
+      <h2>{{ product.price | currency }}</h2>
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+</div>
